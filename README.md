@@ -17,4 +17,8 @@ And that's it. Simply use CSS as you normally would, for example:
   position: sticky;
   top: 20px;
 }
+
+.my-sticky-element.stucky {
+  box-shadow: 0px 4px 13px #8E8E8E;
+}
 ```
