@@ -67,7 +67,7 @@
     }
     elem.setAttribute('style', newStyle.join(';'));
   }
-  var cssPattern = /\s*(.*?)\s*{(.*?)}/g,
+  var cssPattern = /\s*(.*?)\s*{(.*?)}+/g,
       matchPosition = /\.*?position:.*?sticky.*?;/,
       getTop = /\.*?top:(.*?);/,
       toObserve = [];
