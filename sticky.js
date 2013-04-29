@@ -1,4 +1,13 @@
 (function () {
+  var prefixTestList = ['', '-webkit-', '-ms-', '-moz-', '-o-'];
+  var stickyTestElement = document.createElement('div');
+
+  for (var i = 0; i < prefixTestList.length; i++) {
+    stickyTestElement.style.position = prefixTestList[i] + 'sticky';
+    if (stickyTestElement.style.position != '')
+      return;
+  }
+  
   var slice = Array.prototype.slice,
       qSA = document.querySelectorAll.bind(document);
   function getBodyOffset(body) {
