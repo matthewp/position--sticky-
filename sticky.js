@@ -8,8 +8,7 @@
       return;
   }
   
-  var slice = Array.prototype.slice,
-      qSA = document.querySelectorAll.bind(document);
+  var slice = Array.prototype.slice;
   function getBodyOffset(body) {
     return {
       top: body.offsetTop,
@@ -82,7 +81,7 @@
         var topMatch = getTop.exec(matches[2]),
             topCSS = ((topMatch !== null) ? parseInt(topMatch[1]) : 0);
 
-        var elems = slice.call(qSA(selector));
+        var elems = slice.call(document.querySelectorAll(selector));
         elems.forEach(function (elem) {
           var height = elem.offsetHeight,
               parent = elem.parentElement,
@@ -139,12 +138,12 @@
     }
   }, false);
   window.addEventListener('load', function () {
-    var styles = slice.call(qSA('style'));
+    var styles = slice.call(document.querySelectorAll('style'));
     styles.forEach(function (style) {
       var text = style.textContent || style.innerText;
       parse(text);
     });
-    var links = slice.call(qSA('link'));
+    var links = slice.call(document.querySelectorAll('link'));
     links.forEach(function (link) {
       if(link.getAttribute('rel') !== 'stylesheet') {
         return;
