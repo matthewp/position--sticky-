@@ -1,6 +1,7 @@
 /*!
  * "position: sticky" polyfill
  * https://github.com/matthewp/position--sticky-
+ * License: MIT
  */
 (function () {
   var prefixTestList = ['', '-webkit-', '-ms-', '-moz-', '-o-'];
