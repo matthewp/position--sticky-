@@ -7,7 +7,7 @@
   var prefixTestList = ['', '-webkit-', '-ms-', '-moz-', '-o-'];
   var stickyTestElement = document.createElement('div');
 
-  for (var i = 0; i < prefixTestList.length; i++) {
+  for (var i = 0, l = prefixTestList.length; i < l; i++) {
     stickyTestElement.style.position = prefixTestList[i] + 'sticky';
     if (stickyTestElement.style.position != '')
       return;
@@ -58,7 +58,7 @@
     var style = elem.getAttribute('style').split(';'),
         newStyle = [];
 
-    for(var i = 0; i < style.length; i++) {
+    for(var i = 0, l = style.length; i < l; i++) {
       var both = style[i].split(':'),
           key = both[0],
           value = both[1];
@@ -66,7 +66,7 @@
       if(key in repl) {
         newStyle.push(key + ':' + repl[key]);
       } else {
-        newStyle.push(both);
+        newStyle.push(both.join(':'));
       }
     }
     elem.setAttribute('style', newStyle.join(';'));
@@ -116,7 +116,7 @@
   }
   window.addEventListener('scroll', function () {
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    for(var i = 0; i < toObserve.length; i++) {
+    for(var i = 0, l = toObserve.length; i < l; i++) {
       var obj = toObserve[i];
       if(obj.fixed === false && scrollTop > obj.start && scrollTop < obj.end) {
         obj.element.setAttribute('style', obj.newCSS);
