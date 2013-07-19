@@ -66,7 +66,7 @@
       if(key in repl) {
         newStyle.push(key + ':' + repl[key]);
       } else {
-        newStyle.push(both);
+        newStyle.push(both.join(':'));
       }
     }
     elem.setAttribute('style', newStyle.join(';'));
