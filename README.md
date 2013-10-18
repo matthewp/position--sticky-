@@ -22,3 +22,11 @@ And that's it. Simply use CSS as you normally would, for example:
   box-shadow: 0px 4px 13px #8E8E8E;
 }
 ```
+
+### Note from Nelson
+
+I made this a bower project, and will be pulling in changes that the original author (Matthew P) or anyone else makes. Feel free to submit pull requests against this repo.
+
+To install this with bower, simply do:
+
+    bower install position-sticky
