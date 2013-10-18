@@ -1,0 +1,21 @@
+{
+  "name": "position-sticky",
+  "version": "1.0.0",
+  "homepage": "https://github.com/yoshokatana/position--sticky-",
+  "authors": [
+    "Nelson Pecora <nelson@yoshokatana.com>"
+  ],
+  "description": "Polyfill for position: sticky, forked from github.com/matthewp.",
+  "main": "sticky.js",
+  "keywords": [
+    "polyfill"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
