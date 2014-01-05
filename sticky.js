@@ -71,14 +71,14 @@
     }
     elem.setAttribute('style', newStyle.join(';'));
   }
-  var cssPattern = /\s*(.*?)\s*{(.*?)}+/g,
-      matchPosition = /\.*?position:.*?sticky.*?;/,
-      getTop = /\.*?top:(.*?);/,
+  var cssPattern = /\s*(.*?)\s*{(.*?)}+/gi,
+      matchPosition = /\.*?position:.*?sticky.*?;/i,
+      getTop = /\.*?top:(.*?);/i,
       toObserve = [];
 
   function parse(css) {
     var matches;
-    css = css.replace(/(\/\*([\s\S]*?)\*\/)|(\/\/(.*)$)/gm, '').replace(/\n|\r/g, '');
+    css = css.replace(/(\/\*([\s\S]*?)\*\/)|(\/\/(.*)$)/gmi, '').replace(/\n|\r/gi, '');
 
     while((matches = cssPattern.exec(css)) !== null) {
       var selector = matches[1];
