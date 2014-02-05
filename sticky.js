@@ -6,13 +6,19 @@
 (function () {
   var prefixTestList = ['', '-webkit-', '-ms-', '-moz-', '-o-'];
   var stickyTestElement = document.createElement('div');
+  var lastKnownScrollTop = 0;
+  var waitingForUpdate = false;
+  // requestAnimationFrame may be prefixed
+  var requestAnimationFrame = window.requestAnimationFrame ||
+                              window.webkitRequestAnimationFrame ||
+                              window.mozRequestAnimationFrame;
 
   for (var i = 0, l = prefixTestList.length; i < l; i++) {
     stickyTestElement.style.position = prefixTestList[i] + 'sticky';
     if (stickyTestElement.style.position != '')
       return;
   }
-  
+
   var slice = Array.prototype.slice;
   function getBodyOffset(body) {
     return {
@@ -98,7 +104,7 @@
               end = (parOffTop + parent.offsetHeight) - height - topCSS,
               newCSS = matches[2] + "position:fixed;width:" + elem.offsetWidth + "px;height:" + height + "px",
               dummy = document.createElement('div');
-          
+
           dummy.innerHTML = '<span style="position:static;display:block;height:' + height + 'px;"></span>';
           toObserve.push({
             element: elem,
@@ -114,8 +120,9 @@
       }
     }
   }
-  window.addEventListener('scroll', function () {
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  function setPositions() {
+    var scrollTop = lastKnownScrollTop;
+    waitingForUpdate = false;
     for(var i = 0, l = toObserve.length; i < l; i++) {
       var obj = toObserve[i];
       if(obj.fixed === false && scrollTop > obj.start && scrollTop < obj.end) {
@@ -141,7 +148,27 @@
         }
       }
     }
-  }, false);
+  }
+
+  // Debounced scroll handling
+  function updateScrollPos() {
+    lastKnownScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+    // Only trigger a layout change if we’re not already waiting for one
+    if (!waitingForUpdate) {
+      waitingForUpdate = true;
+      // Don’t update until next animation frame if we can, otherwise use a
+      // timeout - either will help avoid too many repaints
+      if (requestAnimationFrame) {
+        requestAnimationFrame(setPositions);
+      }
+      else {
+        setTimeout(setPositions, 15);
+      }
+    }
+  }
+  window.addEventListener('scroll', updateScrollPos);
+
   window.addEventListener('load', function () {
     var styles = slice.call(document.querySelectorAll('style'));
     styles.forEach(function (style) {
@@ -158,6 +185,9 @@
       req.open('GET', href, true);
       req.onload = function (e) {
         parse(req.responseText);
+
+        // Update once stylesheet loaded, in case page loaded with a scroll offset
+        updateScrollPos();
       };
       req.send();
     });
