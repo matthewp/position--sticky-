@@ -1,0 +1,11 @@
+{
+  "name": "position-sticky",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yoshokatana/position--sticky-.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-uglify": "~0.2.7"
+  }
+}
