@@ -14,9 +14,11 @@
                               window.mozRequestAnimationFrame;
 
   for (var i = 0, l = prefixTestList.length; i < l; i++) {
-    stickyTestElement.style.position = prefixTestList[i] + 'sticky';
-    if (stickyTestElement.style.position != '')
-      return;
+    try {
+      stickyTestElement.style.position = prefixTestList[i] + 'sticky';
+    } catch(e) {
+      return false;
+    }
   }
 
   var slice = Array.prototype.slice;
