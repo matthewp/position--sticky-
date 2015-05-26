@@ -95,6 +95,7 @@
             topCSS = ((topMatch !== null) ? parseInt(topMatch[1]) : 0);
 
         var elems = slice.call(document.querySelectorAll(selector));
+        matches[2] = (matches[2].trim().slice(-1) === ";") ? matches[2] : matches[2].trim() + ';';
         elems.forEach(function (elem) {
           var height = elem.offsetHeight,
               parent = elem.parentElement,
