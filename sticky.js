@@ -14,11 +14,8 @@
                               window.mozRequestAnimationFrame;
 
   for (var i = 0, l = prefixTestList.length; i < l; i++) {
-    try {
       stickyTestElement.style.position = prefixTestList[i] + 'sticky';
-    } catch(e) {
-      return false;
-    }
+      if (stickyTestElement.style.position === "") { return false;}
   }
 
   var slice = Array.prototype.slice;
@@ -170,7 +167,7 @@
       }
     }
   }
-  window.addEventListener('scroll', updateScrollPos);
+  if (stickyTestElement.style.position.length === 0)  { window.addEventListener('scroll', updateScrollPos); }
 
   window.addEventListener('load', function () {
     var styles = slice.call(document.querySelectorAll('style'));
