@@ -101,7 +101,7 @@
               elmOffTop = ((elmOff !== null && elmOff.top !== null) ? elmOff.top : 0),
               start = elmOffTop - topCSS,
               end = (parOffTop + parent.offsetHeight) - height - topCSS,
-              newCSS = matches[2] + "position:fixed;width:" + elem.offsetWidth + "px;height:" + height + "px",
+              newCSS = matches[2] + "position:fixed;width:100%;height:" + height + "px",
               dummy = document.createElement('div');
 
           dummy.innerHTML = '<span style="position:static;display:block;height:' + height + 'px;"></span>';
