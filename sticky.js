@@ -15,7 +15,6 @@
 
   for (var i = 0, l = prefixTestList.length; i < l; i++) {
       stickyTestElement.style.position = prefixTestList[i] + 'sticky';
-      if (stickyTestElement.style.position === "") { return false;}
   }
 
   var slice = Array.prototype.slice;

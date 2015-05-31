@@ -1,6 +1,6 @@
 {
   "name": "position--sticky-",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "position:sticky polyfill based on matthewp/position--sticky-",
   "main": "sticky.js",
   "scripts": {
