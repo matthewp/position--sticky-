@@ -14,11 +14,7 @@
                               window.mozRequestAnimationFrame;
 
   for (var i = 0, l = prefixTestList.length; i < l; i++) {
-    try {
       stickyTestElement.style.position = prefixTestList[i] + 'sticky';
-    } catch(e) {
-      return false;
-    }
   }
 
   var slice = Array.prototype.slice;
@@ -95,6 +91,7 @@
             topCSS = ((topMatch !== null) ? parseInt(topMatch[1]) : 0);
 
         var elems = slice.call(document.querySelectorAll(selector));
+        matches[2] = (matches[2].trim().slice(-1) === ";") ? matches[2] : matches[2].trim() + ';';
         elems.forEach(function (elem) {
           var height = elem.offsetHeight,
               parent = elem.parentElement,
@@ -104,7 +101,7 @@
               elmOffTop = ((elmOff !== null && elmOff.top !== null) ? elmOff.top : 0),
               start = elmOffTop - topCSS,
               end = (parOffTop + parent.offsetHeight) - height - topCSS,
-              newCSS = matches[2] + "position:fixed;width:" + elem.offsetWidth + "px;height:" + height + "px",
+              newCSS = matches[2] + "position:fixed;width:100%;height:" + height + "px",
               dummy = document.createElement('div');
 
           dummy.innerHTML = '<span style="position:static;display:block;height:' + height + 'px;"></span>';
@@ -169,7 +166,7 @@
       }
     }
   }
-  window.addEventListener('scroll', updateScrollPos);
+  if (stickyTestElement.style.position.length === 0)  { window.addEventListener('scroll', updateScrollPos); }
 
   window.addEventListener('load', function () {
     var styles = slice.call(document.querySelectorAll('style'));

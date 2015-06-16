@@ -1,0 +1,19 @@
+{
+  "name": "position--sticky-",
+  "version": "1.0.3",
+  "description": "position:sticky polyfill based on matthewp/position--sticky-",
+  "main": "sticky.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vnovick/position--sticky-.git"
+  },
+  "author": "matthewp, added to npm by vnovick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vnovick/position--sticky-/issues"
+  },
+  "homepage": "https://github.com/vnovick/position--sticky-"
+}
