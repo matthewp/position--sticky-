@@ -166,29 +166,31 @@
       }
     }
   }
-  if (stickyTestElement.style.position.length === 0)  { window.addEventListener('scroll', updateScrollPos); }
+  if (stickyTestElement.style.position.length === 0) {
+    window.addEventListener('scroll', updateScrollPos);
 
-  window.addEventListener('load', function () {
-    var styles = slice.call(document.querySelectorAll('style'));
-    styles.forEach(function (style) {
-      var text = style.textContent || style.innerText;
-      parse(text);
-    });
-    var links = slice.call(document.querySelectorAll('link'));
-    links.forEach(function (link) {
-      if(link.getAttribute('rel') !== 'stylesheet') {
-        return;
-      }
-      var href = link.getAttribute('href'),
-          req = new XMLHttpRequest();
-      req.open('GET', href, true);
-      req.onload = function (e) {
-        parse(req.responseText);
+    window.addEventListener('load', function () {
+      var styles = slice.call(document.querySelectorAll('style'));
+      styles.forEach(function (style) {
+        var text = style.textContent || style.innerText;
+        parse(text);
+      });
+      var links = slice.call(document.querySelectorAll('link'));
+      links.forEach(function (link) {
+        if(link.getAttribute('rel') !== 'stylesheet') {
+          return;
+        }
+        var href = link.getAttribute('href'),
+            req = new XMLHttpRequest();
+        req.open('GET', href, true);
+        req.onload = function (e) {
+          parse(req.responseText);
 
-        // Update once stylesheet loaded, in case page loaded with a scroll offset
-        updateScrollPos();
-      };
-      req.send();
-    });
-  }, false);
+          // Update once stylesheet loaded, in case page loaded with a scroll offset
+          updateScrollPos();
+        };
+        req.send();
+      });
+    }, false);
+  }
 })();
